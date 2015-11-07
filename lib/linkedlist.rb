@@ -30,7 +30,9 @@ class Linkedlist
         end    
     end    
     
-
+    def get_begin
+        return @begin 
+    end    
     
     def get_end
         return @end

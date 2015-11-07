@@ -46,6 +46,9 @@ describe Linkedlist do
             # el último elemento de la lista será el último que se ha insertado
             @list.get_end.should eq(:n5)
         end    
+        it "La lista debe tener una cabeza" do
+            @list.get_begin.should_not be(nil) 
+        end    
     end    
 
 end        
