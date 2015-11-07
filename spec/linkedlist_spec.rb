@@ -31,7 +31,9 @@ describe Linkedlist do
            @list.get_end.should eq(:n1)
         end    
         it "Se extrae el primer elemento de la lista" do
-            
+            @list.insert_end(:n1)
+            @list.extract_begin
+            @list.size.should eq(0)
         end    
     end    
 
