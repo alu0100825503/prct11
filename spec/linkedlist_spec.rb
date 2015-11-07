@@ -34,6 +34,17 @@ describe Linkedlist do
             @list.insert_end(:n1)
             @list.extract_begin
             @list.size.should eq(0)
+        end
+        it "Se pueden insertar varios elementos en la lista" do
+            @list.insert_end(:n1) 
+            @list.insert_end(:n2)
+            @list.insert_end(:n3)
+            @list.insert_end(:n4)
+            @list.insert_end(:n5)
+
+            # Si las inserciones se han realizado con éxito, 
+            # el último elemento de la lista será el último que se ha insertado
+            @list.get_end.should eq(:n5)
         end    
     end    
 
