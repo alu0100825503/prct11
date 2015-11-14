@@ -52,6 +52,6 @@ class Articulo_periodico < Bibliograph
     
 end
 
-class Articulo_periodico < Bibliograph
+class Documento_electronico < Bibliograph
     
 end    
