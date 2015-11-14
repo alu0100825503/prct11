@@ -9,46 +9,52 @@ describe Linkedlist do
         @l4 = Bibliograph.new(['David Chelimsky', 'Dave Astels', 'Bryan Helmkamp', 'Dan North', 'Zach Dennis', 'Aslak Hellesoy'], 'The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends', 'The Facets of Ruby', 'Pragmatic Bookshelf', '1 edition', 'December 25, 2010', ['1934356379', '978-1934356371'])
         @l5 = Bibliograph.new('Richard E. Silverman', 'Git Pocket Guide', nil, 'O’Reilly Media', '1 edition', 'August 2, 2013', ['1449325866', '978-1449325862'])
         
-        @n1 = Nodo.new(:l1, :l2)
-        @n2 = Nodo.new(:l2, :l3)
-        @n3 = Nodo.new(:l3, :l4)
-        @n4 = Nodo.new(:l4, :l5)
-        @n5 = Nodo.new(:l5, nil)
-        
         @list = Linkedlist.new
     end
 
     describe "Nodo" do
         it "El nodo contiene correctamente su información" do
-            @n1.value.should eq(:l1)
-            @n1.next.should eq(:l2) 
+            @list.insert_end(:l1)
+            @list.get_end.should eq(:l1)
         end    
     end   
     
     describe "Lista enlazada" do
         it "Se inserta correctamente un elemento" do
-           @list.insert_end(:n1) 
-           @list.get_end.should eq(:n1)
+           @list.insert_end(:l1) 
+           @list.get_end.should eq(:l1)
         end    
         it "Se extrae el primer elemento de la lista" do
-            @list.insert_end(:n1)
+            @list.insert_end(:l1)
             @list.extract_begin
             @list.size.should eq(0)
         end
         it "Se pueden insertar varios elementos en la lista" do
-            @list.insert_end(:n1) 
-            @list.insert_end(:n2)
-            @list.insert_end(:n3)
-            @list.insert_end(:n4)
-            @list.insert_end(:n5)
+            @list.insert_end(:l1) 
+            @list.insert_end(:l2)
+            @list.insert_end(:l3)
+            @list.insert_end(:l4)
+            @list.insert_end(:l5)
 
             # Si las inserciones se han realizado con éxito, 
             # el último elemento de la lista será el último que se ha insertado
-            @list.get_end.should eq(:n5)
+            @list.get_end.should eq(:l5)
         end    
         it "La lista debe tener una cabeza" do
+            @list.insert_end(:l3)
             @list.get_begin.should_not be(nil) 
         end    
+        it "Se puede obtener el nodo previo al último" do
+            @list.insert_end(:l3)
+            @list.insert_end(:l4)
+            @list.get_prev_lastnode.should eq(:l3)
+        end    
+        it "Se puede obtener el valor de un nodo dada su posición en la lista" do
+            @list.insert_end(:l1)
+            @list.insert_end(:l2)
+            @list.insert_end(:l3)
+            @list.get_element_by_pos(2).should eq(:l3)
+        end  
     end    
 
 end        

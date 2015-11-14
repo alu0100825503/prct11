@@ -37,3 +37,21 @@ class Bibliograph
         return vector_reference
     end    
 end
+
+class Libro < Bibliograph
+    def initialize (autor, titulo, serie, editorial, edicion, fecha, isbn)
+       super(autor, titulo, serie, editorial, edicion, fecha, isbn) 
+    end    
+end
+
+class Articulo_revista < Bibliograph
+
+end
+
+class Articulo_periodico < Bibliograph
+    
+end
+
+class Articulo_periodico < Bibliograph
+    
+end    
