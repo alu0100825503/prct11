@@ -91,3 +91,20 @@ describe Articulo_periodico do
         end    
     end    
 end
+
+describe Articulo_revista do
+    before :each do
+        @r1 = Articulo_revista.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178'])
+    end
+    
+    describe "# Clase Articulo_revista" do
+        it "Se comprueba la pertenencia de un objeto a la clase Articulo_periodico y su pertenencia a la jerarquía" do
+            @r1.instance_of?(Articulo_revista).should eq(true)
+            @r1.instance_of?(Bibliograph).should eq(false)
+        end
+        it "Se comprueba la pertenencia a la jerarquía" do
+            @r1.is_a?(Articulo_revista).should eq(true)
+            @r1.is_a?(Bibliograph).should eq(true)
+        end    
+    end    
+end
