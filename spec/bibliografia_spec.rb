@@ -4,6 +4,10 @@ require "./lib/bibliografia/definicion.rb"
 describe Bibliograph do
   before :each do
     @b1 = Bibliograph.new(['Dave Thomas', 'Andy Hunt'], 'Programming Ruby 1.9 & 2.0: The Pragmatic Programmers’ Guide', 'The Facets of Ruby', 'Pragmatic Bookshelf', '4 edition', 'July 7, 2013', [978-1937785499, 1937785491])
+    @l1 = Libro.new('Scott Chacon', 'Pro Git 2009th Edition', 'Pro', 'Apress', '2009 edition', 'August 27, 2009', ['978-1430218333', '1430218339'])
+    @p1 = Articulo_periodico.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178'])
+    @r1 = Articulo_revista.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178'])
+    @d1 = Documento_electronico.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178']) 
   end    
     
   describe "# Almacenamiento del autor, título, etc" do
@@ -53,6 +57,12 @@ describe Bibliograph do
        @b1.get_reference_formatted.should eq(
            [['Dave Thomas', 'Andy Hunt'], 'Programming Ruby 1.9 & 2.0: The Pragmatic Programmers’ Guide', 
            'The Facets of Ruby', 'Pragmatic Bookshelf', '4 edition', 'July 7, 2013', [978-1937785499, 1937785491]])  
+    end    
+    it "Comparar bibliografías" do
+       expect(@b1 > @l1).to eq(true)
+       expect(@b1 < @p1).to eq(false)
+       expect(@p1 == @r1).to eq(true)
+       expect(@d1 > @l1).to eq(false)
     end    
   end
 end
@@ -122,6 +132,10 @@ describe Documento_electronico do
         it "Se comprueba la pertenencia a la jerarquía" do
             @d1.is_a?(Documento_electronico).should eq(true)
             @d1.is_a?(Bibliograph).should eq(true)
-        end    
+            
+        end 
+        #it "Probando el tipo" do 
+           # expect(@d1.respond_to?).to 
+        #end    
     end    
 end

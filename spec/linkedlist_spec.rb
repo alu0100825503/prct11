@@ -55,6 +55,10 @@ describe Linkedlist do
             @list.insert_end(:l3)
             @list.get_element_by_pos(2).should eq(:l3)
         end  
+        it "Método each" do
+            @list.insert_end(:l3)
+            expect(@list.each).to eq('The Ruby Programming Language') 
+        end    
     end    
 
 end        

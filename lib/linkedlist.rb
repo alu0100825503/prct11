@@ -1,7 +1,9 @@
+#require "./lib/bibliografia/definicion.rb"
 
 Nodo = Struct.new(:value, :next, :prev)
 
 class Linkedlist
+    include Enumerable
     attr_reader :begin, :end, :size
     
     def initialize
@@ -9,6 +11,17 @@ class Linkedlist
         @end = Nodo.new(nil, nil, nil)
         @size = 0
     end
+    
+    def each
+        aux_titulo = ''
+        nodo_aux = @begin
+        i = 0
+        while (i < @size)
+            aux_titulo = nodo_aux.value.get_titulo
+            nodo_aux = nodo_aux.next
+            puts aux_titulo
+        end
+    end    
     
     def insert_end (value)
         nodo_aux = Nodo.new(value, nil, nil)

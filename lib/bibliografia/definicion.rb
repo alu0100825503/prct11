@@ -1,5 +1,10 @@
 class Bibliograph
+    include Comparable
     attr_reader :autor, :titulo, :serie, :editorial, :edicion, :fecha, :isbn
+    
+    def <=> (anOther)
+         self.get_year <=> anOther.get_year
+    end    
     
     def initialize(autor, titulo, serie, editorial, edicion, fecha, isbn)
         @autor, @titulo, @serie, @editorial, @edicion, @fecha, @isbn = autor, titulo, serie, editorial, edicion, fecha, isbn 
@@ -27,6 +32,10 @@ class Bibliograph
     def get_fecha
         fecha = @fecha
         return fecha
+    end   
+    def get_year
+        year = fecha[-4..-1] 
+        return year
     end    
     def get_isbn
         vector_isbn = @isbn
