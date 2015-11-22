@@ -10,6 +10,8 @@ describe Linkedlist do
         @l5 = Bibliograph.new('Richard E. Silverman', 'Git Pocket Guide', nil, 'O’Reilly Media', '1 edition', 'August 2, 2013', ['1449325866', '978-1449325862'])
         
         @list = Linkedlist.new
+        @list1 = Linkedlist.new
+        @list2 = Linkedlist.new
     end
 
     describe "Nodo" do
@@ -56,8 +58,33 @@ describe Linkedlist do
             @list.get_element_by_pos(2).should eq(:l3)
         end  
         it "Método each" do
-            @list.insert_end(:l3)
-            expect(@list.each).to eq('The Ruby Programming Language') 
+            @list1.insert_end(:l3)
+            @list1.insert_end(:l4)
+            
+            # count returns the number of
+            # items in enum through enumeration
+            expect(@list1.count).to eq(3) 
+            
+            # all? returns true when none 
+            # of the collection members 
+            # are false or nil
+            expect(@list1.all?).to eq(true)
+            
+            # any? returns true if at least 
+            # one of the collection members 
+            # is not false or nil 
+            expect(@list.any?).to eq(true)
+            
+            # Drops first n elements from enum, 
+            # and returns rest elements in an array
+            # In this case, we drop @begin and @end,
+            # and return an array containing @size
+            expect(@list1.drop(2)).to eq([2])
+            
+            # detect returns the first for which block is 
+            # not false. NOTE: detect and find are 
+            # two names for the same method.
+            expect(@list1.detect {|i| i == 2}).to eq(2)
         end    
     end    
 

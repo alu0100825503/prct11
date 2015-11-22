@@ -13,14 +13,9 @@ class Linkedlist
     end
     
     def each
-        aux_titulo = ''
-        nodo_aux = @begin
-        i = 0
-        while (i < @size)
-            aux_titulo = nodo_aux.value.get_titulo
-            nodo_aux = nodo_aux.next
-            puts aux_titulo
-        end
+        yield @begin
+        yield @end
+        yield @size
     end    
     
     def insert_end (value)
