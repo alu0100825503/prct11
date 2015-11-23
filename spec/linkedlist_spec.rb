@@ -101,6 +101,7 @@ describe Linkedlist do
             # two names for the same method.
             it "Comprobando el método detect" do
                  expect(@list1.detect{|c| c=='a'}).to eq 'a'
+                 expect(@list1.find{|c| c=='b'}).to eq 'b'
             end    
         end    
     end    
