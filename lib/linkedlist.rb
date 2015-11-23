@@ -15,7 +15,7 @@ class Linkedlist
     def each
         nodo_aux = @begin
         while nodo_aux != nil
-            yield nodo_aux
+            yield nodo_aux.value
             nodo_aux = nodo_aux.next
         end
     end    

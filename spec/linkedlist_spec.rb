@@ -68,7 +68,8 @@ describe Linkedlist do
             # one of the collection members 
             # is not false or nil 
             it "Comprobando el método any?" do
-                expect(@list1.any?).to eq false 
+                expect(@list1.any?).to eq true 
+                expect(@list2.any?).to eq false
             end
                 
             # count returns the number of
