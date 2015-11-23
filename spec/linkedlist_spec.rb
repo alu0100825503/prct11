@@ -104,11 +104,17 @@ describe Linkedlist do
                  expect(@list1.find{|c| c=='b'}).to eq 'b'
             end   
             
-            # Returns the object in enum with the maximum 
+            # max returns the object in enum with the maximum 
             # value.
             it "Comprobando el método max" do
                 expect(@list1.max).to eq 'c'
-            end    
+            end
+            
+            # min returns the object in enum with the minimun 
+            # value.
+            it "Comprobando el método min" do
+                expect(@list1.min).to eq 'a'
+            end
         end    
     end    
 
