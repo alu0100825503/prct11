@@ -115,6 +115,12 @@ describe Linkedlist do
             it "Comprobando el método min" do
                 expect(@list1.min).to eq 'a'
             end
+            
+            # sort returns an array containing the items
+            # in enum sorted.
+            it "Comprobando el método sort" do
+                expect(@list1.sort).to eq ['a', 'b', 'c']
+            end    
         end    
     end    
 
