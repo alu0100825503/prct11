@@ -88,14 +88,13 @@ describe Linkedlist do
                 expect(@list2.count).to eq 1
             end
             
-            #expect(@list1.all?).to eq(true)
-            
-            
             # Drops first n elements from enum, 
             # and returns rest elements in an array
-            # In this case, we drop @begin and @end,
-            # and return an array containing @size
-            #expect(@list1.drop(2)).to eq([2])
+            # In this case, we drop the first element
+            # in the list (character a)
+            it "Comprobando el método drop" do
+                expect(@list1.drop(1)).to eq ['b', 'c'] 
+            end    
             
             # detect returns the first for which block is 
             # not false. NOTE: detect and find are 
