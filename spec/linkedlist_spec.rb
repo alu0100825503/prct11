@@ -67,7 +67,7 @@ describe Linkedlist do
             
             # any? returns true if at least 
             # one of the collection members 
-            # is not false or nil 
+            # is not false or nil.
             it "Comprobando el método any?" do
                 expect(@list1.any?).to eq true 
                 expect(@list2.any?).to eq false
@@ -75,23 +75,23 @@ describe Linkedlist do
                
             # all? returns true when none 
             # of the collection members 
-            # are false or nil    
+            # are false or nil.  
             it "Comprobando el método all?" do
                 expect(@list1.all?).to eq true
                 expect(@list2.all?).to eq false
             end    
                 
             # count returns the number of
-            # items in enum through enumeration
+            # items in enum through enumeration.
             it "Comprobando el método count" do
                 expect(@list1.count).to eq 3
-                expect(@list2.count).to eq 1
+                expect(@list2.count).to eq 1    # we pushed a nil element in List2
             end
             
             # Drops first n elements from enum, 
             # and returns rest elements in an array
             # In this case, we drop the first element
-            # in the list (character a)
+            # in the list (character a).
             it "Comprobando el método drop" do
                 expect(@list1.drop(1)).to eq ['b', 'c'] 
             end    
@@ -102,6 +102,12 @@ describe Linkedlist do
             it "Comprobando el método detect" do
                  expect(@list1.detect{|c| c=='a'}).to eq 'a'
                  expect(@list1.find{|c| c=='b'}).to eq 'b'
+            end   
+            
+            # Returns the object in enum with the maximum 
+            # value.
+            it "Comprobando el método max" do
+                expect(@list1.max).to eq 'c'
             end    
         end    
     end    
