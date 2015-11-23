@@ -71,20 +71,21 @@ describe Linkedlist do
                 expect(@list1.any?).to eq true 
                 expect(@list2.any?).to eq false
             end
+               
+            # all? returns true when none 
+            # of the collection members 
+            # are false or nil    
+            it "Comprobando el método all?" do
+                expect(@list1.all?).to eq true
+            end    
                 
             # count returns the number of
             # items in enum through enumeration
             #expect(@list1.count).to eq(3) 
             
-            # all? returns true when none 
-            # of the collection members 
-            # are false or nil
+            
             #expect(@list1.all?).to eq(true)
             
-            # any? returns true if at least 
-            # one of the collection members 
-            # is not false or nil 
-            #expect(@list.any?).to eq(true)
             
             # Drops first n elements from enum, 
             # and returns rest elements in an array
