@@ -58,8 +58,9 @@ describe Linkedlist do
         context "# Haciendo la clase LinkedList enumerable" do
             before :each do
                 @list1 = Linkedlist.new()
-                @list1.insert_end(1)
-                @list1.insert_end(2)
+                @list1.insert_end('a')
+                @list1.insert_end('b')
+                @list1.insert_end('c')
                 @list2 = Linkedlist.new()
                 @list2.insert_end(nil)
             end
@@ -82,8 +83,10 @@ describe Linkedlist do
                 
             # count returns the number of
             # items in enum through enumeration
-            #expect(@list1.count).to eq(3) 
-            
+            it "Comprobando el método count" do
+                expect(@list1.count).to eq 3
+                expect(@list2.count).to eq 1
+            end
             
             #expect(@list1.all?).to eq(true)
             
