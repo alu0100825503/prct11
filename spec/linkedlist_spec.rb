@@ -77,6 +77,7 @@ describe Linkedlist do
             # are false or nil    
             it "Comprobando el método all?" do
                 expect(@list1.all?).to eq true
+                expect(@list2.all?).to eq false
             end    
                 
             # count returns the number of
