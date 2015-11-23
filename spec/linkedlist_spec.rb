@@ -99,7 +99,9 @@ describe Linkedlist do
             # detect returns the first for which block is 
             # not false. NOTE: detect and find are 
             # two names for the same method.
-            #expect(@list1.detect {|i| i == 2}).to eq(2)
+            it "Comprobando el método detect" do
+                 expect(@list1.detect{|c| c=='a'}).to eq 'a'
+            end    
         end    
     end    
 
