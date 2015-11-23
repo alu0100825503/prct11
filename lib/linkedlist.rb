@@ -13,9 +13,11 @@ class Linkedlist
     end
     
     def each
-        yield @begin
-        yield @end
-        yield @size
+        nodo_aux = @begin
+        while nodo_aux != nil
+            yield nodo_aux
+            nodo_aux = nodo_aux.next
+        end
     end    
     
     def insert_end (value)

@@ -8,10 +8,8 @@ describe Linkedlist do
         @l3 = Bibliograph.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178'])
         @l4 = Bibliograph.new(['David Chelimsky', 'Dave Astels', 'Bryan Helmkamp', 'Dan North', 'Zach Dennis', 'Aslak Hellesoy'], 'The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends', 'The Facets of Ruby', 'Pragmatic Bookshelf', '1 edition', 'December 25, 2010', ['1934356379', '978-1934356371'])
         @l5 = Bibliograph.new('Richard E. Silverman', 'Git Pocket Guide', nil, 'O’Reilly Media', '1 edition', 'August 2, 2013', ['1449325866', '978-1449325862'])
-        
-        @list = Linkedlist.new
-        @list1 = Linkedlist.new
-        @list2 = Linkedlist.new
+    
+        @list = Linkedlist.new()
     end
 
     describe "Nodo" do
@@ -57,34 +55,46 @@ describe Linkedlist do
             @list.insert_end(:l3)
             @list.get_element_by_pos(2).should eq(:l3)
         end  
-        it "Método each" do
-            @list1.insert_end(:l3)
-            @list1.insert_end(:l4)
-            
-            # count returns the number of
-            # items in enum through enumeration
-            expect(@list1.count).to eq(3) 
-            
-            # all? returns true when none 
-            # of the collection members 
-            # are false or nil
-            expect(@list1.all?).to eq(true)
+        context "# Haciendo la clase LinkedList enumerable" do
+            before :each do
+                @list1 = Linkedlist.new()
+                @list1.insert_end(1)
+                @list1.insert_end(2)
+                @list2 = Linkedlist.new()
+                @list2.insert_end(nil)
+            end
             
             # any? returns true if at least 
             # one of the collection members 
             # is not false or nil 
-            expect(@list.any?).to eq(true)
+            it "Comprobando el método any?" do
+                expect(@list1.any?).to eq false 
+            end
+                
+            # count returns the number of
+            # items in enum through enumeration
+            #expect(@list1.count).to eq(3) 
+            
+            # all? returns true when none 
+            # of the collection members 
+            # are false or nil
+            #expect(@list1.all?).to eq(true)
+            
+            # any? returns true if at least 
+            # one of the collection members 
+            # is not false or nil 
+            #expect(@list.any?).to eq(true)
             
             # Drops first n elements from enum, 
             # and returns rest elements in an array
             # In this case, we drop @begin and @end,
             # and return an array containing @size
-            expect(@list1.drop(2)).to eq([2])
+            #expect(@list1.drop(2)).to eq([2])
             
             # detect returns the first for which block is 
             # not false. NOTE: detect and find are 
             # two names for the same method.
-            expect(@list1.detect {|i| i == 2}).to eq(2)
+            #expect(@list1.detect {|i| i == 2}).to eq(2)
         end    
     end    
 
