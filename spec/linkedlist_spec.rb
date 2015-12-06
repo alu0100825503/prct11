@@ -1,3 +1,5 @@
+#!enconding utf8
+
 require "./lib/linkedlist.rb"
 require "./lib/bibliografia/definicion.rb"
 
@@ -120,6 +122,12 @@ describe Linkedlist do
             # in enum sorted.
             it "Comprobando el método sort" do
                 expect(@list1.sort).to eq ['a', 'b', 'c']
+            end   
+            
+            # map returns a new array with the results of 
+            # running block once for every element in enum.
+            it "Comprobando el método map" do
+                expect(@list1.map{|c| c.upcase}).to eq ['A', 'B', 'C']
             end    
         end    
     end    
