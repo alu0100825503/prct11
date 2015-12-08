@@ -27,6 +27,10 @@ describe Linkedlist do
     
     it "Se muestra correctamente la información de un artículo de periódico" do
         expect(@p1.to_s).to eq 'Monedero, J. (29 junio 2014). Idiotas o ciudadanos. Diario Unidad. [21, 24]'
-    end    
+    end  
+    
+    it "Se muestra correctamente la información de un artículo de revista" do
+        expect(@r1.to_s).to eq 'Torre, L. (2006). Documentos sobre la música en la catedral de Las Palmas. En El Museo Canario (101 páginas).'
+    end     
     
 end        
