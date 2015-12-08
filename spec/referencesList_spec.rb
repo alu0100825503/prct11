@@ -1,6 +1,6 @@
 require './spec_helper.rb'
 require '../lib/linkedlist.rb'
-require '../lib/bibliografia/reference.rb'
+require '../lib/bibliografia/definition.rb'
 
 describe Linkedlist do
     before :each do
