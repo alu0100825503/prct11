@@ -33,4 +33,8 @@ describe Linkedlist do
         expect(@r1.to_s).to eq 'Torre, L. (2006). Documentos sobre la música en la catedral de Las Palmas. En El Museo Canario (101 páginas).'
     end     
     
+    it "Se muestra correctamente la información de un documento electrónico" do
+        expect(@d1.to_s).to eq false
+    end    
+    
 end        
