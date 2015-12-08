@@ -4,11 +4,11 @@ require '../lib/bibliografia/reference.rb'
 
 describe Linkedlist do
     before :each do
-        @b1 = Bibliograph.new('Scott Chacon', 'Pro Git 2009th Edition', 'August 27, 2009')
-        @l1 = Libro.new('Scott Chacon', 'Pro Git 2009th Edition', 'Pro', 'Apress', '2009 edition', 'August 27, 2009', ['978-1430218333', '1430218339'])
-        @p1 = Articulo_periodico.new('Jesus Monedero', 'Idiotas o ciudadanos', '29 junio 2014', 'Diario Unidad', [21, 24])
-        @r1 = Articulo_revista.new('Lucas Torre Champsour', 'Documentos sobre la musica en la catedral de Las Palmas', 'El Museo Canario', '3 marzo 2006', [353,454])
-        @d1 = Documento_electronico.new('Andrew Harnack', 'Beyond the MLA handbook', 'en línea', 'Chicago: The University of Chicago Press', '4 abril 1997', '<http://falcon.eku.edu/honors/ beyond-mla/>') 
+        @b1 = Bibliograph.new(['Scott Chacon'], 'Pro Git 2009th Edition', 'August 27, 2009')
+        @l1 = Libro.new(['Scott Chacon', 'William Shakespeare'], 'Pro Git 2009th Edition', 'Pro', 'Apress', '2009 edition', 'August 27, 2009', ['978-1430218333', '1430218339'])
+        @p1 = Articulo_periodico.new(['Jesus Monedero'], 'Idiotas o ciudadanos', '29 junio 2014', 'Diario Unidad', [21, 24])
+        @r1 = Articulo_revista.new(['Lucas Torre Champsour'], 'Documentos sobre la musica en la catedral de Las Palmas', 'El Museo Canario', '3 marzo 2006', [353,454])
+        @d1 = Documento_electronico.new(['Andrew Harnack'], 'Beyond the MLA handbook', 'en línea', 'Chicago: The University of Chicago Press', '4 abril 1997', '<http://falcon.eku.edu/honors/ beyond-mla/>') 
     
         @lista = Linkedlist.new
     end
@@ -22,7 +22,7 @@ describe Linkedlist do
     end    
     
     it "Se muestra correctamente la información de un libro" do
-        expect(@l1.to_s).to eq 'Chacon, S. (2009). Pro Git 2009th Edition (2009 edition). Apress'
+        expect(@l1.to_s).to eq 'Chacon, S. & Shakespeare, W. (2009). Pro Git 2009th Edition (2009 edition). Apress'
     end    
     
     it "Se muestra correctamente la información de un artículo de periódico" do
