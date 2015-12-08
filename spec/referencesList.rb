@@ -43,6 +43,18 @@ describe Linkedlist do
         @lista.insert_end(@l1) 
         
         expect(@lista.sort).to eq [@l1,@p1,@r1]
-    end    
+    end   
     
+    it "Las referencias son comparables mediante el apellido del primer autor" do
+        @lista.insert_end(@b1)
+        @lista.insert_end(@l1)
+        @lista.insert_end(@p1)
+        @lista.insert_end(@r1)
+        @lista.insert_end(@d1)
+        
+        expect(@b1 == @l1).to eq true
+        expect(@l1 > @p1).to eq false
+        expect(@r1 < @d1).to eq false
+        expect(@d1 < @p1).to eq true
+    end    
 end        
