@@ -37,8 +37,12 @@ describe Linkedlist do
         expect(@d1.to_s).to eq 'Harnack, A. (1997). Beyond the MLA handbook [en línea]. Ed: Chicago: The University of Chicago Press. Disponible en: <http://falcon.eku.edu/honors/ beyond-mla/>'
     end    
     
-    it "Se ordena la lista en base al apellido del primer autor" do
+    it "Se pueden insertar referencias de acuerdo a su orden alfabético por primer apellido" do
+        @lista.insert_end(@r1)
+        @lista.insert_end(@p1)
+        @lista.insert_end(@l1) 
         
+        expect(@lista.sort).to eq [@l1,@p1,@r1]
     end    
     
 end        

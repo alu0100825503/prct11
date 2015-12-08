@@ -32,10 +32,12 @@ describe Bibliograph do
     end
     
     it "Comparar bibliografías" do
-       expect(@b1 > @l1).to eq(false)   # 2009 == 2009
-       expect(@b1 < @p1).to eq(true)    # 2009 < 2014
-       expect(@p1 > @r1).to eq(true)    # 2014 > 2006
-       expect(@d1 > @l1).to eq(false)   # 1997 < 2009 
+       expect(@b1 > @l1).to eq(false)   
+       expect(@b1 < @p1).to eq(true)    
+       expect(@p1 > @r1).to eq(true)   
+       expect(@d1 > @l1).to eq(true)
+       expect(@b1 < @r1).to eq (true)
+       expect(@p1 > @d1).to eq (true)
        expect(@b1 == @l1).to eq(true)
     end    
 end
