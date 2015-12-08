@@ -1,70 +1,43 @@
 require "spec_helper"
-require "./lib/bibliografia/definicion.rb"
+require "./lib/bibliografia/reference.rb"
 
 describe Bibliograph do
   before :each do
-    @b1 = Bibliograph.new(['Dave Thomas', 'Andy Hunt'], 'Programming Ruby 1.9 & 2.0: The Pragmatic Programmers’ Guide', 'The Facets of Ruby', 'Pragmatic Bookshelf', '4 edition', 'July 7, 2013', [978-1937785499, 1937785491])
+    @b1 = Bibliograph.new('Scott Chacon', 'Pro Git 2009th Edition', 'August 27, 2009')
     @l1 = Libro.new('Scott Chacon', 'Pro Git 2009th Edition', 'Pro', 'Apress', '2009 edition', 'August 27, 2009', ['978-1430218333', '1430218339'])
-    @p1 = Articulo_periodico.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178'])
-    @r1 = Articulo_revista.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178'])
-    @d1 = Documento_electronico.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178']) 
+    @p1 = Articulo_periodico.new('Jesús Monedero', 'Idiotas o ciudadanos', '29 junio 2014', 'Diario Unidad', [21, 24])
+    @r1 = Articulo_revista.new('Lucas Torre Champsour', 'Documentos sobre la música en la catedral de Las Palmas', 'El Museo Canario', '3 marzo 2006', [353,454])
+    @d1 = Documento_electronico.new('Andrew Harnack', 'Beyond the MLA handbook', 'en línea', 'Chicago: The University of Chicago Press', '4 abril 1997', '<http://falcon.eku.edu/honors/ beyond-mla/>') 
   end    
     
   describe "# Almacenamiento del autor, título, etc" do
-    it "Se almacena correctamente el primer autor" do
-        @b1.autor[0].should eq('Dave Thomas') 
-    end
+    it "Se almacena correctamente el(los) autor(es)" do
+        @b1.autores.should eq('Scott Chacon')
+    end    
     it "Se almacena correctamente el título" do
-        @b1.titulo.should eq('Programming Ruby 1.9 & 2.0: The Pragmatic Programmers’ Guide') 
+        @b1.titulo.should eq('Pro Git 2009th Edition') 
     end    
-    it "Se almacena correctamente la serie" do
-        @b1.serie.should eq('The Facets of Ruby')
-    end
-    it "Se almacena correctamente la editorial" do
-        @b1.editorial.should eq('Pragmatic Bookshelf')
-    end
-    it "Se almacena correctamente la edición" do
-        @b1.edicion.should eq('4 edition')
-    end
     it "Se almacena correctamente la fecha" do
-        @b1.fecha.should eq('July 7, 2013')
+        @b1.fecha.should eq('August 27, 2009')
     end
-    it "Se almacena correctamente el primer isbn" do
-        @b1.isbn[0].should eq(978-1937785499)
-    end    
     it "Listado de autores" do
-        @b1.get_autores.should eq(['Dave Thomas', 'Andy Hunt']) 
+        @b1.get_autores.should eq('Scott Chacon') 
     end    
     it "Obtener título" do
-       @b1.get_titulo.should eq('Programming Ruby 1.9 & 2.0: The Pragmatic Programmers’ Guide') 
+       @b1.get_titulo.should eq('Pro Git 2009th Edition') 
     end 
-    it "Obtener serie" do
-       @b1.get_serie.should eq('The Facets of Ruby') 
-    end    
-    it "Obtener editorial" do
-       @b1.get_editorial.should eq('Pragmatic Bookshelf') 
-    end    
-    it "Obtener el número de edición" do
-       @b1.get_edicion.should eq('4 edition') 
     end    
     it "Obtener la fecha" do
-       @b1.get_fecha.should eq('July 7, 2013') 
+       @b1.get_fecha.should eq('August 27, 2009') 
     end
-    it "Listado de ISBN" do
-       @b1.get_isbn.should eq([978-1937785499, 1937785491]) 
-    end
-    it "Bibliografía formateada" do
-       @b1.get_reference_formatted.should eq(
-           [['Dave Thomas', 'Andy Hunt'], 'Programming Ruby 1.9 & 2.0: The Pragmatic Programmers’ Guide', 
-           'The Facets of Ruby', 'Pragmatic Bookshelf', '4 edition', 'July 7, 2013', [978-1937785499, 1937785491]])  
-    end    
+    
     it "Comparar bibliografías" do
-       expect(@b1 > @l1).to eq(true)
-       expect(@b1 < @p1).to eq(false)
-       expect(@p1 == @r1).to eq(true)
-       expect(@d1 > @l1).to eq(false)
+       expect(@b1 > @l1).to eq(false)   # 2009 == 2009
+       expect(@b1 < @p1).to eq(true)    # 2009 < 2014
+       expect(@p1 > @r1).to eq(true)    # 2014 > 2006
+       expect(@d1 > @l1).to eq(false)   # 1997 < 2009 
+       expect(@b1 == @l1).to eq(true)
     end    
-  end
 end
 
 describe Libro do
@@ -87,7 +60,7 @@ end
 
 describe Articulo_periodico do
     before :each do
-        @p1 = Articulo_periodico.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178'])
+        @p1 = Articulo_periodico.new('Jesús Monedero', 'Idiotas o ciudadanos', '29 junio 2014', 'Diario Unidad', [21, 24])
     end
     
     describe "# Clase Articulo_periodico" do
@@ -104,7 +77,7 @@ end
 
 describe Articulo_revista do
     before :each do
-        @r1 = Articulo_revista.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178'])
+        @r1 = Articulo_revista.new('Lucas Torre Champsour', 'Documentos sobre la música en la catedral de Las Palmas', 'El Museo Canario', '3 marzo 2006', [353,454])
     end
     
     describe "# Clase Articulo_revista" do
@@ -121,7 +94,7 @@ end
 
 describe Documento_electronico do
     before :each do
-        @d1 = Documento_electronico.new(['David Flanagan', 'Yukihiro Matsumoto'], 'The Ruby Programming Language', nil, 'O’Reilly Media', '1 edition', 'February 4, 2008', ['0596516177', '978-0596516178'])
+        @d1 = Documento_electronico.new('Andrew Harnack', 'Beyond the MLA handbook', 'en línea', 'Chicago: The University of Chicago Press', '4 abril 1997', '<http://falcon.eku.edu/honors/ beyond-mla/>') 
     end
     
     describe "# Clase Articulo_revista" do
