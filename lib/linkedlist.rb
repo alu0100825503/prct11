@@ -42,13 +42,13 @@ class Linkedlist
     
     def extract_begin
         
-        nodo_aux = Nodo.new(nil, nil)
+        nodo_aux = Nodo.new(nil, nil, nil)
         
         if size > 0
             nodo_aux = @begin
             @begin = nodo_aux.next 
             @size = @size - 1
-            return nodo_aux
+            return nodo_aux.value
         end    
     end    
     
@@ -82,11 +82,14 @@ class Linkedlist
     end
     
     def to_s
-        
+        s = ""
         nodo_aux = @begin
-        while (nodo_aux != nil)
-            puts nodo_aux
+        s += "["
+        while nodo_aux != nil
+            s += nodo_aux.value.to_s
+            s += ","
             nodo_aux = nodo_aux.next
         end
-    end    
+        s += "]"
+    end
 end
