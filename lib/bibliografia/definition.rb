@@ -5,15 +5,36 @@ class Bibliograph
     attr_reader :autores, :titulo, :fecha
     
     def <=> (anOther)
-         self.get_primer_apellido <=> anOther.get_primer_apellido
+        
+        # Si los autores son iguales, se compara por el año
+        if self.get_primer_apellido != anOther.get_primer_apellido
+            self.get_primer_apellido <=> anOther.get_primer_apellido
+                
+        else
+            self.get_year <=> anOther.get_year
+        end    
     end    
     
     def initialize(autores, titulo, fecha)
         @autores, @titulo, @fecha = autores, titulo, fecha
     end    
     def get_autores
-        vector_autores = @autores
-        return vector_autores
+       s = ""
+       i=0
+       
+       while i < autores.size
+            nombre, apellido = autores[i].split(/\W+/)
+            nombre = nombre[0] + "."
+            autor = apellido + ', ' + nombre
+            s += autor
+            
+            if !(i == autores.size-1) # si hay más autores, ponemos '&'
+                s += " & "
+            end    
+            i += 1
+       end
+       
+       return s
     end    
     def get_primer_apellido
         autor = autores[0].split(/\W+/)     # Tomamos el primer autor
@@ -45,22 +66,8 @@ class Libro < Bibliograph
     end  
     
     def to_s
-       s = ""
-       i=0
-       
-       while i < autores.size
-            nombre, apellido = autores[i].split(/\W+/)
-            nombre = nombre[0] + "."
-            autor = apellido + ', ' + nombre
-            s += autor
-            
-            if !(i == autores.size-1) # si hay más autores, ponemos '&'
-                s += " & "
-            end    
-            i += 1
-       end
-        
-        s += ' (' + get_year + '). ' + get_titulo + ' (' + @edicion + '). ' + @editorial
+       s = get_autores
+       s += ' (' + get_year + '). ' + get_titulo + ' (' + @edicion + '). ' + @editorial
     end    
 end
 
@@ -74,20 +81,7 @@ class Articulo_revista < Bibliograph
     end
     
     def to_s
-       s = ""
-       i = 0
-       
-        while i < autores.size
-           nombre, apellido = autores[i].split(/\W+/)
-           nombre = nombre[0] + "."                 
-           autor = apellido + ', ' + nombre
-           
-           if !(i == autores.size-1) # si hay más autores, ponemos '&'
-                s += " & "
-            end
-           
-           i += 1
-        end   
+       s = get_autores
         
        # se debe poner en mayúsculas las palabras del título de revistas
        titulo = ""
@@ -100,7 +94,7 @@ class Articulo_revista < Bibliograph
        ######
         
        n_paginas = (@paginas[1] - @paginas[0]).to_s
-       s = autor + ' (' + get_year + '). ' + titulo + ". En " + @revista + ' (' + n_paginas + ' páginas).' 
+       s += ' (' + get_year + '). ' + titulo + ". En " + @revista + ' (' + n_paginas + ' páginas).' 
     end    
 end
 
@@ -114,17 +108,9 @@ class Articulo_periodico < Bibliograph
     end
     
     def to_s
-       s = ""
-       i = 0
-       
-       while i < autores.size 
-           nombre, apellido = autores[i].split(/\W+/)
-           nombre = nombre[0] + "."                 
-           autor = apellido + ', ' + nombre
-           i += 1
-        end   
+       s = get_autores  
        numero_pag = @numero_paginas[0].to_s + ', ' + @numero_paginas[1].to_s
-       s = autor + ' (' + get_fecha + '). ' + get_titulo + '. ' + @periodico + '. [' + numero_pag + ']'
+       s += ' (' + get_fecha + '). ' + get_titulo + '. ' + @periodico + '. [' + numero_pag + ']'
     end    
 end
 
@@ -140,15 +126,7 @@ class Documento_electronico < Bibliograph
     end
     
     def to_s
-       s = ""
-       i = 0
-       
-       while i < autores.size
-           nombre, apellido = autores[i].split(/\W+/)
-           nombre = nombre[0] + "."                 
-           autor = apellido + ', ' + nombre
-           i += 1
-        end       
-       s = autor + ' (' + get_year + '). ' + get_titulo + ' [' + @tipo_medio + ']. ' + "Ed: " + @editorial + ". Disponible en: " + @via
+       s = get_autores   
+       s += ' (' + get_year + '). ' + get_titulo + ' [' + @tipo_medio + ']. ' + "Ed: " + @editorial + ". Disponible en: " + @via
     end    
 end    
