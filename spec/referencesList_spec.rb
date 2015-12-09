@@ -21,26 +21,26 @@ describe Linkedlist do
         expect(@lista.extract_begin).to eq @l1
     end    
     
-    it "Se muestra correctamente la información de un libro" do
+    it "Se muestra correctamente la información de un libro en formato APA" do
         expect(@l1.to_s).to eq 'Chacon, S. & Shakespeare, W. (2009). Pro Git 2009th Edition (2009 edition). Apress'
     end    
     
-    it "Se muestra correctamente la información de un artículo de periódico" do
+    it "Se muestra correctamente la información de un artículo de periódico en formato APA" do
         expect(@p1.to_s).to eq 'Monedero, J. (29 junio 2014). Idiotas o ciudadanos. Diario Unidad. [21, 24]'
     end  
     
-    it "Se muestra correctamente la información de un artículo de revista" do
+    it "Se muestra correctamente la información de un artículo de revista en formato APA" do
         expect(@r1.to_s).to eq 'Torre, L. (2006). Documentos Sobre La Musica En La Catedral De Las Palmas. En El Museo Canario (101 páginas).'
     end     
     
-    it "Se muestra correctamente la información de un documento electrónico" do
+    it "Se muestra correctamente la información de un documento electrónico APA" do
         expect(@d1.to_s).to eq 'Harnack, A. (1997). Beyond the MLA handbook [en línea]. Ed: Chicago: The University of Chicago Press. Disponible en: <http://falcon.eku.edu/honors/ beyond-mla/>'
     end    
     
-    it "Se pueden insertar referencias de acuerdo a su orden alfabético por primer apellido" do
+    it "Se pueden ordenar las referencias de acuerdo a su orden alfabético por primer apellido" do
         @lista.insert_end(@r1)
         @lista.insert_end(@p1)
-        @lista.insert_end(@l1) 
+        @lista.insert_end(@l1)
         
         expect(@lista.sort).to eq [@l1,@p1,@r1]
     end   
