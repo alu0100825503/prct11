@@ -72,7 +72,7 @@ describe Libro do
         @d1 = Documento_electronico.new('Beyond the MLA handbook') do
             autor 'Andrew Harnack'
             fecha '4 abril 1997'
-            tipo 'en línea'
+            tipo_medio 'en línea'
             editorial 'Chicago: The University of Chicago Press'
             via '<http://falcon.eku.edu/honors/ beyond-mla/>'
         end    
@@ -89,6 +89,10 @@ describe Libro do
     it "Se muestra correctamente la información de un artículo de periódico en formato APA" do
         expect(@p1.to_s).to eq 'Monedero, J. (29 junio 2014). Idiotas o ciudadanos. Diario Unidad. [21-24]'
     end  
+    
+    it "Se muestra correctamente la información de un documento electrónico APA" do
+        expect(@d1.to_s).to eq 'Harnack, A. (1997). Beyond the MLA handbook [en línea]. Ed: Chicago: The University of Chicago Press. Disponible en: <http://falcon.eku.edu/honors/ beyond-mla/>'
+    end    
 end
 
 =begin
