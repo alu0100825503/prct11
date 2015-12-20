@@ -49,7 +49,7 @@ class Bibliograph
     end    
     def get_primer_apellido
         autor = @autores[0].split(/\W+/)     # Tomamos el primer autor
-        autor = @autor[1]                    # Nos quedamos con el primer apellido del autor anterior
+        autor = @autores[1]                    # Nos quedamos con el primer apellido del autor anterior
     end    
     def get_titulo
         titulo = @titulo 
