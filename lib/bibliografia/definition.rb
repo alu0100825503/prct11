@@ -135,31 +135,46 @@ class Articulo_revista < Bibliograph
 end
 
 class Articulo_periodico < Bibliograph
-    attr_reader :autores, :titulo, :fecha, :periodico, :numeros_paginas
+    attr_reader :periodico, :numeros_paginas
     
-    def initialize (autores, titulo, fecha, periodico, numeros_paginas)
-       super(autores, titulo, fecha)
-       @periodico = periodico
-       @numero_paginas = numeros_paginas
+    def initialize (titulo, &bloque)
+        super(titulo)
+        instance_eval &bloque if block_given?
     end
+    
+    def periodico(name)
+        @periodico = name
+    end
+    
+    def numeros_paginas(numbers)
+        @numeros_paginas = numbers 
+    end    
     
     def to_s
        s = get_autores  
-       numero_pag = @numero_paginas[0].to_s + ', ' + @numero_paginas[1].to_s
-       s += ' (' + get_fecha + '). ' + get_titulo + '. ' + @periodico + '. [' + numero_pag + ']'
+       s += ' (' + get_fecha + '). ' + get_titulo + '. ' + @periodico + '. [' + @numeros_paginas + ']'
     end    
 end
 
 class Documento_electronico < Bibliograph
-    attr_reader :autores, :titulo, :tipo_medio, :editorial, :fecha, :via
+    attr_reader :tipo_medio, :editorial, :via
     
-    def initialize (autores, titulo, tipo_medio, editorial, fecha, via)
-       super(autores, titulo, fecha)
-       @tipo_medio = tipo_medio
-       @editorial = editorial
-       @fecha = fecha
-       @via = via
+    def initialize (titulo, &bloque)
+        super(titulo)
+        instance_eval &bloque if block_given?
     end
+    
+    def tipo_medio(name)
+        @tipo_medio = name 
+    end    
+    
+    def editorial(name)
+        @editorial = name 
+    end    
+    
+    def via(name)
+        @via = name 
+    end    
     
     def to_s
        s = get_autores   

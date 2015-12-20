@@ -47,8 +47,8 @@ end
 describe Libro do
     before :each do
         @l1 = Libro.new('Pro Git 2009th Edition') do
-            autor "Scott Chacon"
-            fecha "August 27, 2009"
+            autor 'Scott Chacon'
+            fecha 'August 27, 2009'
             serie 'Pro'
             editorial 'Apress'
             edicion '2009 edition'
@@ -57,9 +57,24 @@ describe Libro do
         
         @r1 = Articulo_revista.new('Documentos sobre la musica en la catedral de Las Palmas') do
             autor 'Lucas Torre'
-            fecha "3 marzo 2006"
+            fecha '3 marzo 2006'
             revista 'El Museo Canario'
             paginas '27'
+        end    
+        
+        @p1 = Articulo_periodico.new('Idiotas o ciudadanos') do
+            autor 'Jesus Monedero' 
+            fecha '29 junio 2014'
+            periodico 'Diario Unidad'
+            numeros_paginas '21-24'
+        end    
+        
+        @d1 = Documento_electronico.new('Beyond the MLA handbook') do
+            autor 'Andrew Harnack'
+            fecha '4 abril 1997'
+            tipo 'en línea'
+            editorial 'Chicago: The University of Chicago Press'
+            via '<http://falcon.eku.edu/honors/ beyond-mla/>'
         end    
     end
     
@@ -70,25 +85,14 @@ describe Libro do
     it "Se muestra correctamente la información de un artículo de revista en formato APA" do
         expect(@r1.to_s).to eq 'Torre, L. (2006). Documentos Sobre La Musica En La Catedral De Las Palmas. En El Museo Canario (27 páginas).'
     end
+     
+    it "Se muestra correctamente la información de un artículo de periódico en formato APA" do
+        expect(@p1.to_s).to eq 'Monedero, J. (29 junio 2014). Idiotas o ciudadanos. Diario Unidad. [21-24]'
+    end  
 end
 
 =begin
-describe Libro do
-    before :each do
-        libro1 = Libro.new do
-            titulo = 'Pro Git 2009th Edition'
-            autor = 'Scott Chacon'
-            fecha = 'August 27, 2009'
-            serie = 'Pro'
-            editorial = 'Apress'
-            edicion = '2009 edition'
-            isbn = ['978-1430218333', '1430218339']
-        end 
-    end
-    
-    it "Se muestra correctamente la información de un libro en formato APA" do
-        expect(@l1.to_s).to eq 'Chacon, S. & Shakespeare, W. (2008). Pro Git 2009th Edition (2009 edition). Apress'
-    end
+
 
     describe "# Clase Libro" do
         it "Se comprueba la pertenencia de un objeto a la clase Libro y su pertenencia a la jerarquía" do
