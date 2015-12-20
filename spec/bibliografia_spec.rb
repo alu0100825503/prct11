@@ -54,12 +54,24 @@ describe Libro do
             edicion '2009 edition'
             isbn '978-1430218333'
         end 
+        
+        @r1 = Articulo_revista.new('Documentos sobre la musica en la catedral de Las Palmas') do
+            autor 'Lucas Torre'
+            fecha "3 marzo 2006"
+            revista 'El Museo Canario'
+            paginas '27'
+        end    
     end
     
     it "Se muestra correctamente la información de un libro en formato APA" do
         expect(@l1.to_s).to eq 'Chacon, S. (2009). Pro Git 2009th Edition (2009 edition). Apress'
     end
+    
+    it "Se muestra correctamente la información de un artículo de revista en formato APA" do
+        expect(@r1.to_s).to eq 'Torre, L. (2006). Documentos Sobre La Musica En La Catedral De Las Palmas. En El Museo Canario (27 páginas).'
+    end
 end
+
 =begin
 describe Libro do
     before :each do

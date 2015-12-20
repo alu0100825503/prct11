@@ -25,8 +25,8 @@ class Bibliograph
         @autores << name # Se añade autor al vector de autores
     end    
     
-    def fecha(name)
-        @fecha = name 
+    def fecha(date)
+        @fecha = date 
     end    
     
     def get_autores
@@ -102,13 +102,20 @@ end
 # CLASE ARTÍCULO DE REVISTA
 
 class Articulo_revista < Bibliograph
-    attr_reader :autores, :titulo, :revista, :fecha, :paginas
+    attr_accessor :revista, :paginas
     
-    def initialize (autores, titulo, revista, fecha, paginas)
-       super(autores, titulo, fecha)
-       @revista = revista
-       @paginas = paginas
+    def initialize (titulo, &bloque)
+        super(titulo)
+        instance_eval &bloque if block_given?
     end
+    
+    def revista(name)
+        @revista = name
+    end    
+    
+    def paginas(number_of_pages)
+        @paginas = number_of_pages 
+    end    
     
     def to_s
        s = get_autores
@@ -116,15 +123,14 @@ class Articulo_revista < Bibliograph
        # se debe poner en mayúsculas las palabras del título de revistas
        titulo = ""
        aux = get_titulo.split(/\W+/)
+       
        aux.each do |element|
            titulo += element.capitalize
            titulo += ' ' 
        end
+       
        titulo = titulo.chomp(" ") # Quitamos el último espacio
-       ######
-        
-       n_paginas = (@paginas[1] - @paginas[0]).to_s
-       s += ' (' + get_year + '). ' + titulo + ". En " + @revista + ' (' + n_paginas + ' páginas).' 
+       s += ' (' + get_year + '). ' + titulo + ". En " + @revista + ' (' + @paginas + ' páginas).' 
     end    
 end
 
