@@ -2,7 +2,7 @@ class Bibliograph
     include Comparable
     
     # Todas las referencias comparten los atributos autores, título y fecha
-    attr_reader :autores, :titulo, :fecha
+    attr_accessor :titulo, :autores, :fecha
     
     def <=> (anOther)
         
@@ -15,20 +15,31 @@ class Bibliograph
         end    
     end    
     
-    def initialize(autores, titulo, fecha)
-        @autores, @titulo, @fecha = autores, titulo, fecha
+    def initialize(titulo, &bloque)
+        self.titulo = titulo
+        instance_eval &bloque if block_given?
     end    
+    
+    def autor(name)
+        @autores = []
+        @autores << name # Se añade autor al vector de autores
+    end    
+    
+    def fecha(name)
+        @fecha = name 
+    end    
+    
     def get_autores
        s = ""
        i=0
        
-       while i < autores.size
-            nombre, apellido = autores[i].split(/\W+/)
+       while i < @autores.size
+            nombre, apellido = @autores[i].split(/\W+/)
             nombre = nombre[0] + "."
             autor = apellido + ', ' + nombre
             s += autor
             
-            if !(i == autores.size-1) # si hay más autores, ponemos '&'
+            if !(i == @autores.size-1) # si hay más autores, ponemos '&'
                 s += " & "
             end    
             i += 1
@@ -37,8 +48,8 @@ class Bibliograph
        return s
     end    
     def get_primer_apellido
-        autor = autores[0].split(/\W+/)     # Tomamos el primer autor
-        autor = autor[1]                    # Nos quedamos con el primer apellido del autor anterior
+        autor = @autores[0].split(/\W+/)     # Tomamos el primer autor
+        autor = @autor[1]                    # Nos quedamos con el primer apellido del autor anterior
     end    
     def get_titulo
         titulo = @titulo 
@@ -49,27 +60,46 @@ class Bibliograph
         return fecha
     end   
     def get_year
-        year = fecha[-4..-1] 
+        year = @fecha[-4..-1] 
         return year
     end    
 end
 
+
+# CLASE LIBRO
+
 class Libro < Bibliograph
-    attr_reader :autores, :titulo, :serie, :editorial, :edicion, :fecha, :isbn
+    attr_accessor :serie, :editorial, :edicion, :isbn
     
-    def initialize (autores, titulo, serie, editorial, edicion, fecha, isbn)
-       super(autores, titulo, fecha)
-       @serie = serie
-       @editorial = editorial
-       @edicion = edicion
-       @isbn = isbn
+    def initialize (titulo, &bloque)
+       super(titulo)
+       instance_eval &bloque if block_given?
     end  
+    
+    def serie(name)
+        @serie = name
+    end    
+    
+    def editorial(name)
+        @editorial = name
+    end    
+    
+    def edicion(number_of_edition)
+        @edicion = number_of_edition 
+    end    
+    
+    def isbn(number_of_isbn)
+        @isbn = number_of_isbn 
+    end    
     
     def to_s
        s = get_autores
        s += ' (' + get_year + '). ' + get_titulo + ' (' + @edicion + '). ' + @editorial
     end    
 end
+
+
+# CLASE ARTÍCULO DE REVISTA
 
 class Articulo_revista < Bibliograph
     attr_reader :autores, :titulo, :revista, :fecha, :paginas
@@ -129,4 +159,4 @@ class Documento_electronico < Bibliograph
        s = get_autores   
        s += ' (' + get_year + '). ' + get_titulo + ' [' + @tipo_medio + ']. ' + "Ed: " + @editorial + ". Disponible en: " + @via
     end    
-end    
+end

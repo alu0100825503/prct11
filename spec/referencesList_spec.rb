@@ -1,7 +1,7 @@
 require 'spec_helper.rb'
 require './lib/linkedlist.rb'
 require './lib/bibliografia/definition.rb'
-
+=begin
 describe Linkedlist do
     before :each do
         @b1 = Bibliograph.new(['Scott Chacon'], 'Pro Git 2009th Edition', 'August 27, 2009')
@@ -57,4 +57,5 @@ describe Linkedlist do
         expect(@r1 < @d1).to eq false
         expect(@d1 < @p1).to eq true
     end    
-end        
+end     
+=end

@@ -1,6 +1,7 @@
 require "spec_helper.rb"
-require "./lib/bibliografia/reference.rb"
+require "lib/bibliografia/definition.rb"
 
+=begin
 describe Bibliograph do
   before :each do
     @b1 = Bibliograph.new('Scott Chacon', 'Pro Git 2009th Edition', 'August 27, 2009')
@@ -41,12 +42,42 @@ describe Bibliograph do
        expect(@b1 == @l1).to eq(true)
     end    
 end
+=end
 
 describe Libro do
     before :each do
-        @l1 = Libro.new('Scott Chacon', 'Pro Git 2009th Edition', 'Pro', 'Apress', '2009 edition', 'August 27, 2009', ['978-1430218333', '1430218339'])
+        @l1 = Libro.new('Pro Git 2009th Edition') do
+            autor "Scott Chacon"
+            fecha "August 27, 2009"
+            serie 'Pro'
+            editorial 'Apress'
+            edicion '2009 edition'
+            isbn '978-1430218333'
+        end 
     end
     
+    it "Se muestra correctamente la información de un libro en formato APA" do
+        expect(@l1.to_s).to eq 'Chacon, S. (2009). Pro Git 2009th Edition (2009 edition). Apress'
+    end
+end
+=begin
+describe Libro do
+    before :each do
+        libro1 = Libro.new do
+            titulo = 'Pro Git 2009th Edition'
+            autor = 'Scott Chacon'
+            fecha = 'August 27, 2009'
+            serie = 'Pro'
+            editorial = 'Apress'
+            edicion = '2009 edition'
+            isbn = ['978-1430218333', '1430218339']
+        end 
+    end
+    
+    it "Se muestra correctamente la información de un libro en formato APA" do
+        expect(@l1.to_s).to eq 'Chacon, S. & Shakespeare, W. (2008). Pro Git 2009th Edition (2009 edition). Apress'
+    end
+
     describe "# Clase Libro" do
         it "Se comprueba la pertenencia de un objeto a la clase Libro y su pertenencia a la jerarquía" do
             @l1.instance_of?(Libro).should eq(true)
@@ -56,10 +87,12 @@ describe Libro do
             @l1.is_a?(Libro).should eq(true)
             @l1.is_a?(Bibliograph).should eq(true)
             @l1.is_a?(Articulo_periodico).should eq(false)
-        end    
-    end    
-end    
+        end 
+    end 
+end
+=end
 
+=begin
 describe Articulo_periodico do
     before :each do
         @p1 = Articulo_periodico.new('Jesús Monedero', 'Idiotas o ciudadanos', '29 junio 2014', 'Diario Unidad', [21, 24])
@@ -99,7 +132,7 @@ describe Documento_electronico do
         @d1 = Documento_electronico.new('Andrew Harnack', 'Beyond the MLA handbook', 'en línea', 'Chicago: The University of Chicago Press', '4 abril 1997', '<http://falcon.eku.edu/honors/ beyond-mla/>') 
     end
     
-    describe "# Clase Articulo_revista" do
+    describe "# Clase Documento_electronico" do
         it "Se comprueba la pertenencia de un objeto a la clase Articulo_periodico y su pertenencia a la jerarquía" do
             @d1.instance_of?(Documento_electronico).should eq(true)
             @d1.instance_of?(Bibliograph).should eq(false)
@@ -107,10 +140,12 @@ describe Documento_electronico do
         it "Se comprueba la pertenencia a la jerarquía" do
             @d1.is_a?(Documento_electronico).should eq(true)
             @d1.is_a?(Bibliograph).should eq(true)
-            
         end 
+        
+        
         #it "Probando el tipo" do 
            # expect(@d1.respond_to?).to 
         #end    
     end    
 end
+=end
