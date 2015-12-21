@@ -1,3 +1,5 @@
+# Clase que representa referencias bibliográficas en formato APA
+
 class Bibliograph
     include Comparable
     
